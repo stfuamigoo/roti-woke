@@ -16,7 +16,7 @@ class User_model extends CI_Model
 
     public function getUserByID($user_id)
     {
-        return $this->db->query("SELECT * FROM user WHERE `id_user` = '$user_id'")->row_array();
+        return $this->db->query("SELECT * FROM user WHERE `id` = '$user_id'")->row_array();
     }
 
     public function getUserByUsername($username)
@@ -34,15 +34,15 @@ class User_model extends CI_Model
         $username = $new_data['username'];
         $password = $new_data['password'];
         $role = $new_data['role'];
-        $id = $new_data['id_user'];
+        $id = $new_data['id'];
 
-        $query = "UPDATE user SET `username` = '$username', `password` = '$password', `role` = '$role' WHERE `id_user` = '$id'";
+        $query = "UPDATE user SET `username` = '$username', `password` = '$password', `role` = '$role' WHERE `id` = '$id'";
         return $this->db->query($query);
     }
 
     public function deleteUser($id)
     {
-        $query = "DELETE FROM user WHERE `id_user` = '$id'";
+        $query = "DELETE FROM user WHERE `id` = '$id'";
         return $this->db->query($query);
     }
 
