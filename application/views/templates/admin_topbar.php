@@ -14,7 +14,7 @@
 
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
-
+                <h1>Peramalan Roti Woke</h1>
                 <div class="topbar-divider d-none d-sm-block"></div>
 
                 <!-- Nav Item - User Information -->

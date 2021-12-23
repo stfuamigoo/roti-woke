@@ -34,9 +34,11 @@ class User_model extends CI_Model
         $username = $new_data['username'];
         $password = $new_data['password'];
         $role = $new_data['role'];
+        $alamat = $new_data['alamat'];
+        $telepon = $new_data['telepon'];
         $id = $new_data['id'];
 
-        $query = "UPDATE user SET `username` = '$username', `password` = '$password', `role` = '$role' WHERE `id` = '$id'";
+        $query = "UPDATE user SET `username` = '$username', `password` = '$password', `role` = '$role', `alamat` = '$alamat', `telepon` = '$telepon' WHERE `id` = '$id'";
         return $this->db->query($query);
     }
 

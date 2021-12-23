@@ -11,20 +11,20 @@ class Admin_Dashboard extends CI_Controller
         $data['title'] = "Dashboard";
 
         // get all user information from the database
-        // $username = $this->session->userdata('username');
-        // $data['user_data'] = $this->User->getUserByUsername($username);
+        $username = $this->session->userdata('username');
+        $data['user_data'] = $this->User->getUserByUsername($username);
         // $siswa = $this->Siswa->getAllSiswa();
         // $nilai_siswa = $this->Nilai_Siswa->getAllNilaiSiswa();
-        // $user = $this->User->getAllUser();
+        $user = $this->User->getAllUser();
         // $data['total_siswa'] = $this->Siswa->countSiswa($siswa);
-        // $data['total_user'] = $this->User->countUser($user);
+        $data['total_user'] = $this->User->countUser($user);
         // $data['total_nilai_siswa'] = $this->Nilai_Siswa->countNilaiSiswa($nilai_siswa);
 
 
-        // $this->load->view('templates/admin_headbar', $data);
-        // $this->load->view('templates/admin_sidebar');
-        // $this->load->view('templates/admin_topbar');
+        $this->load->view('templates/admin_headbar', $data);
+        $this->load->view('templates/admin_sidebar');
+        $this->load->view('templates/admin_topbar');
         $this->load->view('admin_dashboard/index');
-        // $this->load->view('templates/admin_footer');
+        $this->load->view('templates/admin_footer');
     }
 }
