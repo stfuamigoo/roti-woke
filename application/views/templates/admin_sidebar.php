@@ -44,7 +44,7 @@
 
     <!-- Nav Item - Users -->
     <li class="nav-item <?php echo ($this->uri->segment(2) == 'user_list' ? 'active' : ''); ?>">
-        <a class="nav-link" href="<?php echo site_url(); ?>Kriteria/index">
+        <a class="nav-link" href="<?php echo site_url(); ?>Data_Aktual/index">
             <i class="fas fa-database"></i>
             <span>Data Aktual</span></a>
     </li>
