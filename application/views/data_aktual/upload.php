@@ -22,15 +22,16 @@
 
     <div class="card">
         <div class="card-body">
-            File yang ingin diimport harus berekstensi <p class="text-danger">.xls, .xlsx</p>
+            File yang ingin diimport harus berekstensi <a class="text-danger">.xls, .xlsx</a>
             <form enctype="multipart/form-data" action="<?php echo base_url('Data_Aktual/import_file') ?>" method="POST">
                 <div class="form-group">
                     <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-                    <label for="upload_file">Pilih File</label>
-                    <input type="file" class="form-control-file" id="upload_file" name="upload_file">
+                    <label for="upload-file">Pilih File</label>
+                    <input type="file" class="form-control-file" name="upload-file" required accept=".xls, .xlsx">
                 </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="d-flex mt-4">
+                    <a href="<?php echo site_url(); ?>data_aktual" class="btn btn-secondary ml-auto">Kembali</a>
+                    <button type="submit" class="btn btn-primary ml-3">Tambah</button>
                 </div>
             </form>
         </div>

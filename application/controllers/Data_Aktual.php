@@ -1,6 +1,12 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+require 'vendor/autoload.php';
+
+use Phppot\DataSource;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
+
 class Data_Aktual extends CI_Controller
 {
     public function __construct()
@@ -46,38 +52,40 @@ class Data_Aktual extends CI_Controller
             $data['user_data'] = $this->User->getUserByUsername($username);
 
             // upload file berekstensi excel
-            $upload_file = $_FILES['upload_file']['name'];
-            $extension = pathinfo($upload_file, PATHINFO_EXTENSION);
-            if ($extension == "xls") {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls;
-            } else {
-                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx;
-            }
-            $spreadsheet = $reader->load($_FILES['upload_file']['tmp_name']);
-            $sheetdata = $spreadsheet->getActiveSheet()->toArray();
-            $sheetcount = count($sheetdata);
 
-            if ($sheetcount > 1) {
-                $data = array();
-                for ($i = 1; $i < $sheetcount; $i++) {
-                    # code...
-                    $tanggal = $sheetdata[$i][1];
-                    $penjualan = $sheetdata[$i][2];
-                    $data[] = array(
-                        'tanggal' => $tanggal,
-                        'penjualan' => $penjualan
-                    );
-                }
-                $insertdata = $this->Penjualan->insert($data);
-                if ($insertdata) {
-                    $this->session->set_flashdata('message', '<div class="alert alert-success">Successfully Added.</div>');
-                    redirect('index');
-                } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger">Data Not upload_fileed. Please Try Again.</div>');
-                    redirect('index');
+            if (isset($_POST["upload-file"])) {
+                $allowedFileType = [
+                    'application/vnd.ms-excel',
+                    'text/xls',
+                    'text/xlsx',
+                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                ];
+                if (in_array($_FILES["upload-file"]["name"], $allowedFileType)) {
+                    $targetPath = $_FILES['upload-file']['name'];
+                    move_uploaded_file($_FILES['file']['tmp_name'], $targetPath);
+                    $Reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+                    $spreadSheet = $Reader->load($targetPath);
+                    $sheetdata = $spreadSheet->getActiveSheet();
+                    $spreadSheetAry = $sheetdata->toArray();
+                    $sheetCount = count($spreadSheetAry);
+
+                    if ($sheetCount > 1) {
+                        $data = array();
+                        for ($i = 1; $i < $sheetCount; $i++) {
+                            # code...
+                            $tanggal = $sheetdata[$i][1];
+                            $penjualan = $sheetdata[$i][2];
+                            $data[] = array(
+                                'tanggal' => $tanggal,
+                                'penjualan' => $penjualan
+                            );
+                        }
+                        $this->Penjualan->insert($data);
+                        $this->session->set_flashdata('success_alert', 'User berhasil ditambah!');
+                        redirect('data_aktual');
+                    }
                 }
             }
-
             $this->load->view('templates/admin_headbar', $data);
             $this->load->view('templates/admin_sidebar');
             $this->load->view('templates/admin_topbar');
