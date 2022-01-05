@@ -80,7 +80,7 @@ class Data_Aktual extends CI_Controller
                 }
                 $this->Penjualan->insert_batch($data_aktual);
                 $this->session->set_flashdata('success_alert', 'Data Penjualan berhasil ditambah!');
-                redirect('data_aktual');
+                redirect('Data_Aktual');
             }
             $this->load->view('templates/admin_headbar', $data);
             $this->load->view('templates/admin_sidebar');

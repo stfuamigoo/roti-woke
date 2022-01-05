@@ -30,7 +30,7 @@
                     <input type="file" class="form-control-file" name="upload-file" required accept=".xls, .xlsx">
                 </div>
                 <div class="d-flex mt-4">
-                    <a href="<?php echo site_url(); ?>data_aktual" class="btn btn-secondary ml-auto">Kembali</a>
+                    <a href="<?php echo site_url(); ?>Data_Aktual" class="btn btn-secondary ml-auto">Kembali</a>
                     <button type="submit" class="btn btn-primary ml-3">Tambah</button>
                 </div>
             </form>
