@@ -5,6 +5,7 @@
     <div class="d-sm-flex align-items-center mb-4">
         <h1 class="h3 mb-0 text-gray-800 mr-4">List Data Aktual</h1>
         <a class="btn btn-primary" href="<?php echo site_url(); ?>Data_Aktual/import_file">Import</a>
+        <a href="<?php echo site_url(); ?>Data_Aktual/reset" class="btn btn-danger ml-3">Reset</a>
     </div>
 
     <?php if ($this->session->flashdata('danger_alert')) : ?>
@@ -40,18 +41,19 @@
                             <tr>
                                 <?php
                                 $seperate_date = $penjualan['tanggal'];
-                                $seperate_date = explode('-', $seperate_date);
-                                $tahun = $seperate_date[0];
-                                $bulan = $seperate_date[1];
-                                $tanggal = $seperate_date[2];
+                                $seperate = date('Y-F-d', strtotime($seperate_date));
+                                $seperate_datetime = explode('-', $seperate);
+                                $tahun = $seperate_datetime[0];
+                                $bulan = $seperate_datetime[1];
+                                $tanggal = $seperate_datetime[2];
                                 ?>
                                 <td><?php echo $tahun ?></td>
-                                <td><?php echo date('F', $bulan) ?></td>
+                                <td><?php echo $bulan ?></td>
                                 <td><?php echo $tanggal ?></td>
                                 <td><?php echo $penjualan['penjualan'] ?></td>
                                 <td>
-                                    <a href="<?php echo site_url(); ?>data_aktual/hapus_penjualan/<?php echo $penjualan['id']; ?>"><span class="badge badge-danger">Hapus</span></a>
-                                    <a href="<?php echo site_url(); ?>data_aktual/edit_penjualan/<?php echo $penjualan['id']; ?>"><span class="badge badge-secondary">Edit</span></a>
+                                    <a href="<?php echo site_url(); ?>data_aktual/hapus_penjualan/<?php echo $penjualan['tanggal']; ?>"><span class="badge badge-danger">Hapus</span></a>
+                                    <a href="<?php echo site_url(); ?>data_aktual/edit_penjualan/<?php echo $penjualan['tanggal']; ?>"><span class="badge badge-secondary">Edit</span></a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

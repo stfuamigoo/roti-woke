@@ -8,6 +8,16 @@ class Data_aktual_model extends CI_Model
         return $this->db->insert('penjualan', $data);
     }
 
+    public function insert_batch($data)
+    {
+        $this->db->insert_batch('penjualan', $data);
+        if ($this->db->affected_rows() > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
     public function getAllPenjualan()
     {
         return $this->db->query("SELECT * FROM penjualan ")->result_array();
@@ -16,5 +26,10 @@ class Data_aktual_model extends CI_Model
     public function countUser()
     {
         return $this->db->count_all('penjualan');
+    }
+
+    public function truncate_data()
+    {
+        return $this->db->query("TRUNCATE TABLE penjualan");
     }
 }
