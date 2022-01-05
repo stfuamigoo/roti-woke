@@ -33,7 +33,6 @@
                             <th>Bulan</th>
                             <th>Tanggal</th>
                             <th>Penjualan</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,10 +50,6 @@
                                 <td><?php echo $bulan ?></td>
                                 <td><?php echo $tanggal ?></td>
                                 <td><?php echo $penjualan['penjualan'] ?></td>
-                                <td>
-                                    <a href="<?php echo site_url(); ?>data_aktual/hapus_penjualan/<?php echo $penjualan['tanggal']; ?>"><span class="badge badge-danger">Hapus</span></a>
-                                    <a href="<?php echo site_url(); ?>data_aktual/edit_penjualan/<?php echo $penjualan['tanggal']; ?>"><span class="badge badge-secondary">Edit</span></a>
-                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
