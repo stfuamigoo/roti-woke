@@ -58,7 +58,7 @@
 
     <!-- Nav Item - Users -->
     <li class="nav-item <?php echo ($this->uri->segment(2) == 'user_list' ? 'active' : ''); ?>">
-        <a class="nav-link" href="<?php echo site_url(); ?>Siswa">
+        <a class="nav-link" href="<?php echo site_url(); ?>Perhitungan/perhitungan">
             <i class="fas fa-calculator"></i>
             <span>Perhitungan</span></a>
     </li>
