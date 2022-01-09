@@ -33,7 +33,20 @@ var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
 	type: "bar",
 	data: {
-		labels: [<?= $uniq_month; ?>],
+		labels: [
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+		],
 		datasets: [
 			{
 				label: "Data Aktual",
