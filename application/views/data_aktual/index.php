@@ -33,6 +33,7 @@
                             <th>Bulan</th>
                             <th>Tanggal</th>
                             <th>Penjualan</th>
+                            <th>Varian</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +51,67 @@
                                 <td><?php echo $bulan ?></td>
                                 <td><?php echo $tanggal ?></td>
                                 <td><?php echo $penjualan['penjualan'] ?></td>
+                                <td><?php echo $penjualan['varian'] ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header">Penjualan</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <td>Tahun</td>
+                            <td>Bulan</td>
+                            <td>Data Aktual</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($total as $tot) : ?>
+                            <tr>
+                                <td><?php echo $tot['tahun']; ?></td>
+                                <td><?php echo $tot['bulan']; ?></td>
+                                <td><?php echo $tot['total_penjualan']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header">Penjualan / Varian</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <td>Tahun</td>
+                            <td>Bulan</td>
+                            <td>Coklat</td>
+                            <td>Chocomaltine</td>
+                            <td>Kopi Keju</td>
+                            <td>Kopi Coklat</td>
+                            <td>Sosis</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($total_varian as $tot_var) : ?>
+                            <tr>
+                                <td><?php echo $tot_var['tahun']; ?></td>
+                                <td><?php echo $tot_var['bulan']; ?></td>
+                                <td><?php echo $tot_var['coklat']; ?></td>
+                                <td><?php echo $tot_var['chocomaltine']; ?></td>
+                                <td><?php echo $tot_var['kopi_keju']; ?></td>
+                                <td><?php echo $tot_var['kopi_coklat']; ?></td>
+                                <td><?php echo $tot_var['sosis']; ?></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

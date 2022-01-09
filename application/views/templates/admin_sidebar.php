@@ -57,10 +57,17 @@
     </div>
 
     <!-- Nav Item - Users -->
-    <li class="nav-item <?php echo ($this->uri->segment(2) == 'user_list' ? 'active' : ''); ?>">
-        <a class="nav-link" href="<?php echo site_url(); ?>Perhitungan/perhitungan">
-            <i class="fas fa-calculator"></i>
-            <span>Perhitungan</span></a>
+    <li class="nav-item <?php echo ($this->uri->segment(1) == 'perhitungan' ? 'active' : ''); ?>">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages1">
+            <i class="fas fa-table"></i>
+            <span>Perhitungan</span>
+        </a>
+        <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="<?php echo site_url(); ?>perhitungan/perhitungan">Perhitungan Penjualan</a>
+                <a class="collapse-item" href="<?php echo site_url(); ?>perhitungan/varian">Perhitungan Varian</a>
+            </div>
+        </div>
     </li>
 
     <!-- Nav Item - Users -->

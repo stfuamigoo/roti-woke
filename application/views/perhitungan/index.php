@@ -4,8 +4,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center mb-4">
         <h1 class="h3 mb-0 text-gray-800 mr-4">List Data Aktual</h1>
-        <a class="btn btn-primary" href="<?php echo site_url(); ?>Data_Aktual/import_file">Import</a>
-        <a href="<?php echo site_url(); ?>Data_Aktual/reset" class="btn btn-danger ml-3">Reset</a>
     </div>
 
     <?php if ($this->session->flashdata('danger_alert')) : ?>
@@ -24,21 +22,29 @@
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
+        <div class="card-header">Penjualan</div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Tahun</th>
-                            <th>Bulan</th>
-                            <th>Data Aktual</th>
-                            <th>MA 3</th>
-                            <th>MA 5</th>
-                            <th>MAPE</th>
+                            <td>Tahun</td>
+                            <td>Bulan</td>
+                            <td>Data Aktual</td>
+                            <td>Prediksi</td>
+                            <td>MAPE</td>
                         </tr>
                     </thead>
                     <tbody>
-
+                        <?php foreach ($prediksi as $pre) : ?>
+                            <tr>
+                                <td><?php echo $pre['tahun']; ?></td>
+                                <td><?php echo $pre['bulan']; ?></td>
+                                <td><?php echo $pre['total_penjualan']; ?></td>
+                                <td><?php echo $pre['prediksi']; ?></td>
+                                <td><?php echo $pre['mape']; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

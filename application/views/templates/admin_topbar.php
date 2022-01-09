@@ -5,16 +5,19 @@
     <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow d-flex justify-content-center">
 
             <!-- Sidebar Toggle (Topbar) -->
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
             </button>
 
+            <div class="text-center ">
+                <h2>Peramalan Roti Woke</h2>
+            </div>
+
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
-                <h1>Peramalan Roti Woke</h1>
                 <div class="topbar-divider d-none d-sm-block"></div>
 
                 <!-- Nav Item - User Information -->

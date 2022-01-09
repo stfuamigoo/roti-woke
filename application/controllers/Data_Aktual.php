@@ -25,8 +25,40 @@ class Data_Aktual extends CI_Controller
         $username = $this->session->userdata('username');
         $data['data_penjualan'] = $this->Penjualan->getAllPenjualan();
         $data['user_data'] = $this->User->getUserByUsername($username);
-        $this->Penjualan->truncate_data();
 
+        //tabel penjualan/varian
+        $uniq_month = $this->Penjualan->getUniqueMonth();
+        $total = array();
+        $total_varian = array();
+        foreach ($uniq_month as $uniq) {
+            $sum_month = $this->Penjualan->getSumByMonth($uniq['bulan']);
+            $dateObj   = DateTime::createFromFormat('!m', $uniq['bulan']);
+            $monthName = $dateObj->format('F');
+            $row = [
+                'tahun' => $uniq['tahun'],
+                'bulan' => $monthName,
+                'total_penjualan' => $sum_month['total_penjualan']
+            ];
+            array_push($total, $row);
+
+            $varian_coklat = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'coklat');
+            $varian_chocomaltine = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'chocomaltine');
+            $varian_kopi_keju = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'kopi keju');
+            $varian_kopi_coklat = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'kopi coklat');
+            $varian_sosis = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'sosis');
+            $row_varian = [
+                'tahun' => $uniq['tahun'],
+                'bulan' => $monthName,
+                'coklat' => $varian_coklat['total_varian'],
+                'chocomaltine' => $varian_chocomaltine['total_varian'],
+                'kopi_keju' => $varian_kopi_keju['total_varian'],
+                'kopi_coklat' => $varian_kopi_coklat['total_varian'],
+                'sosis' => $varian_sosis['total_varian']
+            ];
+            array_push($total_varian, $row_varian);
+        }
+        $data['total'] = $total;
+        $data['total_varian'] = $total_varian;
 
         $this->load->view('templates/admin_headbar', $data);
         $this->load->view('templates/admin_sidebar');
@@ -68,17 +100,21 @@ class Data_Aktual extends CI_Controller
                 }
 
                 $spreadsheet = $reader->load($_FILES['upload-file']['tmp_name']);
-                $sheetData = $spreadsheet->getActiveSheet()->toArray();
                 $data_aktual = array();
-                for ($i = 1; $i < count($sheetData); $i++) {
-                    $tanggal = $sheetData[$i][0];
-                    $penjualan = $sheetData[$i][1];
-                    $data_aktual[] = array(
-                        'tanggal' => $tanggal,
-                        'penjualan' => $penjualan
-                    );
+                for ($j = 0; $j < $spreadsheet->getsheetcount(); $j++) {
+                    $sheetData = $spreadsheet->getSheet($j)->toArray();
+                    for ($i = 1; $i < count($sheetData); $i++) {
+                        $tanggal = $sheetData[$i][0];
+                        $penjualan = $sheetData[$i][1];
+                        $varian = $sheetData[$i][2];
+                        $data_aktual[] = array(
+                            'tanggal' => $tanggal,
+                            'penjualan' => $penjualan,
+                            'varian' => $varian
+                        );
+                    }
                 }
-                $this->Penjualan->insert_batch($data_aktual);
+                $return = $this->Penjualan->insert_batch($data_aktual);
                 $this->session->set_flashdata('success_alert', 'Data Penjualan berhasil ditambah!');
                 redirect('Data_Aktual');
             }
