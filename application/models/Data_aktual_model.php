@@ -23,7 +23,7 @@ class Data_aktual_model extends CI_Model
         return $this->db->query("SELECT * FROM penjualan ")->result_array();
     }
 
-    public function countUser()
+    public function countPenjualan()
     {
         return $this->db->count_all('penjualan');
     }

@@ -70,12 +70,6 @@
         </div>
     </li>
 
-    <!-- Nav Item - Users -->
-    <li class="nav-item <?php echo ($this->uri->segment(2) == 'user_list' ? 'active' : ''); ?>">
-        <a class="nav-link" href="<?php echo site_url(); ?>Nilai_siswa">
-            <i class="far fa-chart-bar"></i>
-            <span>Laporan</span></a>
-    </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
 

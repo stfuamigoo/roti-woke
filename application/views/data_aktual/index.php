@@ -95,10 +95,8 @@
                         <tr>
                             <td>Tahun</td>
                             <td>Bulan</td>
-                            <td>Coklat</td>
-                            <td>Chocomaltine</td>
-                            <td>Kopi Keju</td>
-                            <td>Kopi Coklat</td>
+                            <td>Pizza Mini</td>
+                            <td>Kopi</td>
                             <td>Sosis</td>
                         </tr>
                     </thead>
@@ -107,10 +105,8 @@
                             <tr>
                                 <td><?php echo $tot_var['tahun']; ?></td>
                                 <td><?php echo $tot_var['bulan']; ?></td>
-                                <td><?php echo $tot_var['coklat']; ?></td>
-                                <td><?php echo $tot_var['chocomaltine']; ?></td>
-                                <td><?php echo $tot_var['kopi_keju']; ?></td>
-                                <td><?php echo $tot_var['kopi_coklat']; ?></td>
+                                <td><?php echo $tot_var['pizza_mini']; ?></td>
+                                <td><?php echo $tot_var['kopi']; ?></td>
                                 <td><?php echo $tot_var['sosis']; ?></td>
                             </tr>
                         <?php endforeach; ?>

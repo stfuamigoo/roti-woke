@@ -41,18 +41,14 @@ class Data_Aktual extends CI_Controller
             ];
             array_push($total, $row);
 
-            $varian_coklat = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'coklat');
-            $varian_chocomaltine = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'chocomaltine');
-            $varian_kopi_keju = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'kopi keju');
-            $varian_kopi_coklat = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'kopi coklat');
+            $varian_pizza_mini = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'pizza mini');
+            $varian_kopi = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'kopi');
             $varian_sosis = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'sosis');
             $row_varian = [
                 'tahun' => $uniq['tahun'],
                 'bulan' => $monthName,
-                'coklat' => $varian_coklat['total_varian'],
-                'chocomaltine' => $varian_chocomaltine['total_varian'],
-                'kopi_keju' => $varian_kopi_keju['total_varian'],
-                'kopi_coklat' => $varian_kopi_coklat['total_varian'],
+                'pizza_mini' => $varian_pizza_mini['total_varian'],
+                'kopi' => $varian_kopi['total_varian'],
                 'sosis' => $varian_sosis['total_varian']
             ];
             array_push($total_varian, $row_varian);

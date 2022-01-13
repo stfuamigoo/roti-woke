@@ -23,7 +23,6 @@ class Perhitungan extends CI_Controller
                 redirect('home');
             }
             $username = $this->session->userdata('username');
-            $data_penjualan = $this->Penjualan->getAllPenjualan();
             $data['user_data'] = $this->User->getUserByUsername($username);
             $data['title'] = "Perhitungan";
 
@@ -42,18 +41,14 @@ class Perhitungan extends CI_Controller
                 ];
                 array_push($total, $row);
 
-                $varian_coklat = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'coklat');
-                $varian_chocomaltine = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'chocomaltine');
-                $varian_kopi_keju = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'kopi keju');
-                $varian_kopi_coklat = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'kopi coklat');
+                $varian_pizza_mini = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'pizza mini');
+                $varian_kopi = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'kopi');
                 $varian_sosis = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'sosis');
                 $row_varian = [
                     'tahun' => $uniq['tahun'],
                     'bulan' => $monthName,
-                    'coklat' => $varian_coklat['total_varian'],
-                    'chocomaltine' => $varian_chocomaltine['total_varian'],
-                    'kopi_keju' => $varian_kopi_keju['total_varian'],
-                    'kopi_coklat' => $varian_kopi_coklat['total_varian'],
+                    'pizza_mini' => $varian_pizza_mini['total_varian'],
+                    'kopi' => $varian_kopi['total_varian'],
                     'sosis' => $varian_sosis['total_varian']
                 ];
                 array_push($total_varian, $row_varian);
@@ -62,15 +57,11 @@ class Perhitungan extends CI_Controller
             $data['total_varian'] = $total_varian;
             $data['prediksi'] = $this->hitung_prediksi($total);
 
-
-            // if ($nilai_penjualan) {
-            // } else {
             $this->load->view('templates/admin_headbar', $data);
             $this->load->view('templates/admin_sidebar');
             $this->load->view('templates/admin_topbar');
             $this->load->view('perhitungan/index');
             $this->load->view('templates/admin_footer');
-            // }
         }
     }
 
@@ -148,7 +139,6 @@ class Perhitungan extends CI_Controller
             }
             $data['uniq_month'] = $uniq_month;
             $data['total'] = $total;
-            echo '<pre>' . var_export($total, true) . '</pre>';
             $data['total_varian'] = $total_varian;
             $data['prediksi'] = $this->hitung_prediksi($total_varian);
             $data['statement'] = $this->hitung_statement($total_varian);
@@ -164,7 +154,10 @@ class Perhitungan extends CI_Controller
 
     public function hitung_statement($total)
     {
-        $countTotal = count($total);
-        return ($total[$countTotal - 1]['total_penjualan'] + $total[$countTotal - 2]['total_penjualan'] + $total[$countTotal - 3]['total_penjualan']) / 3;
+        if (!$total) {
+        } else {
+            $countTotal = count($total);
+            return ($total[$countTotal - 1]['total_penjualan'] + $total[$countTotal - 2]['total_penjualan'] + $total[$countTotal - 3]['total_penjualan']) / 3;
+        }
     }
 }

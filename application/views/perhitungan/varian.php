@@ -30,10 +30,8 @@
               <label for="exampleFormControlSelect1">Varian</label>
               <select class="form-control" id="nama_varian" name="nama_varian">
                 <option value="" selected hidden disabled>Pilih Varian</option>
-                <option value="coklat" <?php echo ($selected_varian == 'coklat') ? 'selected' : ''; ?>>Coklat</option>
-                <option value="chocomaltine" <?php echo ($selected_varian == 'chocomaltine') ? 'selected' : ''; ?>>Chocomaltine</option>
-                <option value="kopi coklat" <?php echo ($selected_varian == 'kopi coklat') ? 'selected' : ''; ?>>Kopi Coklat</option>
-                <option value="kopi keju" <?php echo ($selected_varian == 'kopi keju') ? 'selected' : ''; ?>>Kopi Keju</option>
+                <option value="pizza mini" <?php echo ($selected_varian == 'pizza mini') ? 'selected' : ''; ?>>Pizza Mini</option>
+                <option value="kopi" <?php echo ($selected_varian == 'kopi') ? 'selected' : ''; ?>>Kopi</option>
                 <option value="sosis" <?php echo ($selected_varian == 'sosis') ? 'selected' : ''; ?>>Sosis</option>
               </select>
             </div>
@@ -80,18 +78,18 @@
   <!-- Bar Chart -->
   <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+      <h6 class="m-0 font-weight-bold text-primary">Diagram Varian</h6>
     </div>
     <div class="card-body">
       <div class="chart-bar">
-        <canvas id="myBarChart"></canvas>
+        <canvas id="diagramVarian"></canvas>
       </div>
     </div>
   </div>
 
   <!-- Statement -->
   <div class="card">
-    <div class="card-header">Statement</div>
+    <div class="card-header">Prediksi</div>
     <div class="card-body">
       Prediksi bulan selanjutnya adalah: <?php echo $statement; ?>
     </div>
