@@ -50,7 +50,7 @@ class User_auth extends CI_Controller
                 $this->session->set_userdata($data);
                 $this->session->set_userdata('loggedIn', true);
 
-                if ($user['role'] == "Admin") {
+                if ($user['role'] == "Admin" || $user['role'] == "Pegawai") {
                     redirect('Admin_dashboard');
                 }
             } else {

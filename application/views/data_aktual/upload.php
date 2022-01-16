@@ -3,7 +3,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center mb-4">
-        <h1 class="h3 mb-0 text-gray-800 mr-4">Import Data Aktual</h1>
+        <h1 class="h3 mb-0 text-gray-800 mr-4">Import Data Penjualan</h1>
     </div>
 
     <?php if ($this->session->flashdata('danger_alert')) : ?>

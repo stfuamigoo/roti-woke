@@ -21,6 +21,7 @@ class Admin_Dashboard extends CI_Controller
         $penjualan = $this->Penjualan->getAllPenjualan();
         $data['total_user'] = $this->User->countUser($user);
         $data['total_data'] = $this->Penjualan->countPenjualan($penjualan);
+        $data['role'] = $this->session->userdata('role');
 
         //get data penjualan untuk diagram
         //data aktual penjualan

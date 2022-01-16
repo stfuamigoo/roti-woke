@@ -25,6 +25,7 @@ class Admin_manage_user extends CI_Controller
             $data['user_data'] = $this->User->getUserByUsername($username);
             $data['users'] = $this->User->getAllUser();
             $data['title'] = "Manage User";
+            $data['role'] = $this->session->userdata('role');
 
             $this->load->view('templates/admin_headbar', $data);
             $this->load->view('templates/admin_sidebar');
@@ -47,6 +48,7 @@ class Admin_manage_user extends CI_Controller
             // get all user information from the database
             $username = $this->session->userdata('username');
             $data['user_data'] = $this->User->getUserByUsername($username);
+            $data['role'] = $this->session->userdata('role');
 
             $this->form_validation->set_rules('username', 'Username', 'required|trim', ['required' => 'Username harus diisi']);
             $this->form_validation->set_rules('password', 'Password', 'required|trim', ['required' => 'Password harus diisi']);
@@ -98,6 +100,7 @@ class Admin_manage_user extends CI_Controller
             // get all user information from the database
             $username = $this->session->userdata('username');
             $data['user_data'] = $this->User->getUserByUsername($username);
+            $data['role'] = $this->session->userdata('role');
 
             $this->form_validation->set_rules('username', 'Username', 'required|trim', ['required' => 'Username harus diisi']);
             $this->form_validation->set_rules('password', 'Password', 'required|trim', ['required' => 'Password harus diisi']);

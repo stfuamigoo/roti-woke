@@ -3,7 +3,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center mb-4">
-        <h1 class="h3 mb-0 text-gray-800 mr-4">List Data Aktual</h1>
+        <h1 class="h3 mb-0 text-gray-800 mr-4">List Data Perhitungan Penjualan</h1>
     </div>
 
     <?php if ($this->session->flashdata('danger_alert')) : ?>
@@ -19,6 +19,25 @@
             <?php echo $this->session->flashdata('success_alert'); ?>
         </div>
     <?php endif; ?>
+
+    <div class="card-shadow mb-4">
+        <div class="card">
+            <div class="card-header">Periode</div>
+            <div class="card-body">
+                <form action="<?php echo site_url('perhitungan/perhitungan'); ?>" method="GET">
+                    <div class="form-group row">
+                        <div class="col-md-9">
+                            <label for="exampleFormControlSelect1">Input Periode</label>
+                            <input type="number" class="form-control" id="periode" name="periode">
+                        </div>
+                        <div class="col-md-3 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary">Tampil</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">

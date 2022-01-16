@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon">
             <i class="fas fa-user-cog"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Admin</div>
+        <div class="sidebar-brand-text mx-3"><?php echo ($role == "Admin") ? 'Admin' : 'Pegawai' ?></div>
     </a>
 
     <!-- Divider -->
@@ -46,7 +46,7 @@
     <li class="nav-item <?php echo ($this->uri->segment(2) == 'user_list' ? 'active' : ''); ?>">
         <a class="nav-link" href="<?php echo site_url(); ?>Data_Aktual/index">
             <i class="fas fa-database"></i>
-            <span>Data Aktual</span></a>
+            <span>Data Penjualan</span></a>
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider">

@@ -25,6 +25,7 @@ class Data_Aktual extends CI_Controller
         $username = $this->session->userdata('username');
         $data['data_penjualan'] = $this->Penjualan->getAllPenjualan();
         $data['user_data'] = $this->User->getUserByUsername($username);
+        $data['role'] = $this->session->userdata('role');
 
         //tabel penjualan/varian
         $uniq_month = $this->Penjualan->getUniqueMonth();
@@ -78,6 +79,7 @@ class Data_Aktual extends CI_Controller
             $username = $this->session->userdata('username');
             $data['data_penjualan'] = $this->Penjualan->getAllPenjualan();
             $data['user_data'] = $this->User->getUserByUsername($username);
+            $data['role'] = $this->session->userdata('role');
 
             // upload file berekstensi excel
             $file_mimes = array('application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

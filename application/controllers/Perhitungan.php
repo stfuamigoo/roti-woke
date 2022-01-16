@@ -25,9 +25,11 @@ class Perhitungan extends CI_Controller
             $username = $this->session->userdata('username');
             $data['user_data'] = $this->User->getUserByUsername($username);
             $data['title'] = "Perhitungan";
+            $data['role'] = $this->session->userdata('role');
 
             //data aktual penjualan
             $uniq_month = $this->Penjualan->getUniqueMonth();
+            $periode = $this->input->get('periode');
             $total = array();
             $total_varian = array();
             foreach ($uniq_month as $uniq) {
@@ -55,6 +57,7 @@ class Perhitungan extends CI_Controller
             }
             $data['total'] = $total;
             $data['total_varian'] = $total_varian;
+            echo '<pre>' . var_export($periode, true) . '</pre>';
             $data['prediksi'] = $this->hitung_prediksi($total);
 
             $this->load->view('templates/admin_headbar', $data);
@@ -77,18 +80,19 @@ class Perhitungan extends CI_Controller
         for ($i = 0; $i < count($total); $i++) {
             if ($i >= 3) {
                 $prediksi = ($total[$i - 1]['total_penjualan'] + $total[$i - 2]['total_penjualan'] + $total[$i - 3]['total_penjualan']) / 3;
-                $result[$i]['prediksi'] = $prediksi;
+                $result[$i]['prediksi'] = round(abs($prediksi));
             } else {
                 $result[$i]['prediksi'] = Null;
             }
         }
+
 
         //mencari mape
         for ($i = 0; $i < count($total); $i++) {
             if ($i >= 3) {
                 if ($result[$i]['total_penjualan']) {
                     $mape =  (($result[$i]['total_penjualan'] - $result[$i]['prediksi']) / $result[$i]['total_penjualan']) * 100;
-                    $result[$i]['mape'] = $mape;
+                    $result[$i]['mape'] = round(abs($mape), 2);
                 } else {
                     $result[$i]['mape'] = null;
                 }
@@ -109,9 +113,9 @@ class Perhitungan extends CI_Controller
                 redirect('home');
             }
             $username = $this->session->userdata('username');
-            $data_penjualan = $this->Penjualan->getAllPenjualan();
             $data['user_data'] = $this->User->getUserByUsername($username);
             $data['title'] = "Perhitungan";
+            $data['role'] = $this->session->userdata('role');
 
             $nama_varian = $this->input->get('nama_varian');
             //data aktual penjualan
@@ -157,7 +161,7 @@ class Perhitungan extends CI_Controller
         if (!$total) {
         } else {
             $countTotal = count($total);
-            return ($total[$countTotal - 1]['total_penjualan'] + $total[$countTotal - 2]['total_penjualan'] + $total[$countTotal - 3]['total_penjualan']) / 3;
+            return round(($total[$countTotal - 1]['total_penjualan'] + $total[$countTotal - 2]['total_penjualan'] + $total[$countTotal - 3]['total_penjualan']) / 3);
         }
     }
 }
