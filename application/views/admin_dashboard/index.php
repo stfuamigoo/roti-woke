@@ -55,7 +55,7 @@
         </div>
         <div class="card-body">
             <div class="chart-bar">
-                <canvas id="diagramPenjualan"></canvas>
+                <canvas id="diagramVarian"></canvas>
             </div>
         </div>
     </div>

@@ -51,7 +51,7 @@
                             <td>Bulan</td>
                             <td>Data Aktual</td>
                             <td>Prediksi</td>
-                            <td>MAPE</td>
+                            <td>Error</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -67,6 +67,14 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+
+    <!-- Statement -->
+    <div class="card">
+        <div class="card-header">MAPE</div>
+        <div class="card-body">
+        MAPE: <?php echo $mape; ?>
         </div>
     </div>
 

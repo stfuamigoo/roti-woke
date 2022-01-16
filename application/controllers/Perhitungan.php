@@ -58,7 +58,8 @@ class Perhitungan extends CI_Controller
             $data['total'] = $total;
             $data['total_varian'] = $total_varian;
             echo '<pre>' . var_export($periode, true) . '</pre>';
-            $data['prediksi'] = $this->hitung_prediksi($total);
+            $data['prediksi'] = $this->hitung_prediksi($total, $periode);
+            $data['mape'] = $this->hitung_mape($data['prediksi'], $periode);
 
             $this->load->view('templates/admin_headbar', $data);
             $this->load->view('templates/admin_sidebar');
@@ -68,18 +69,22 @@ class Perhitungan extends CI_Controller
         }
     }
 
-    public function hitung_prediksi($total)
+    public function hitung_prediksi($total, $periode)
     {
         // data = [
         //     [tahun, bulan, data aktual, prediksi],
         //     [tahun, bulan, data aktual],
         // ]
 
-        //mencari prediksi 3 bulan
+        //mencari prediksi $periode bulan
         $result = $total;
         for ($i = 0; $i < count($total); $i++) {
-            if ($i >= 3) {
-                $prediksi = ($total[$i - 1]['total_penjualan'] + $total[$i - 2]['total_penjualan'] + $total[$i - 3]['total_penjualan']) / 3;
+            if ($i >= $periode && $periode != 0) {
+                $prediksi = 0;
+                for ($j = 1; $j <= $periode; $j++) { 
+                    $prediksi += $total[$i - $j]['total_penjualan'];
+                }
+                $prediksi = $prediksi / $periode;
                 $result[$i]['prediksi'] = round(abs($prediksi));
             } else {
                 $result[$i]['prediksi'] = Null;
@@ -87,9 +92,9 @@ class Perhitungan extends CI_Controller
         }
 
 
-        //mencari mape
+        //mencari error
         for ($i = 0; $i < count($total); $i++) {
-            if ($i >= 3) {
+            if ($i >= $periode && $periode != 0) {
                 if ($result[$i]['total_penjualan']) {
                     $mape =  (($result[$i]['total_penjualan'] - $result[$i]['prediksi']) / $result[$i]['total_penjualan']) * 100;
                     $result[$i]['mape'] = round(abs($mape), 2);
@@ -118,6 +123,7 @@ class Perhitungan extends CI_Controller
             $data['role'] = $this->session->userdata('role');
 
             $nama_varian = $this->input->get('nama_varian');
+            $periode = $this->input->get('periode');
             //data aktual penjualan
             $uniq_month = $this->Penjualan->getUniqueMonth();
             $total = array();
@@ -144,7 +150,7 @@ class Perhitungan extends CI_Controller
             $data['uniq_month'] = $uniq_month;
             $data['total'] = $total;
             $data['total_varian'] = $total_varian;
-            $data['prediksi'] = $this->hitung_prediksi($total_varian);
+            $data['prediksi'] = $this->hitung_prediksi($total_varian, $periode);
             $data['statement'] = $this->hitung_statement($total_varian);
             $data['selected_varian'] = $nama_varian;
 
@@ -162,6 +168,19 @@ class Perhitungan extends CI_Controller
         } else {
             $countTotal = count($total);
             return round(($total[$countTotal - 1]['total_penjualan'] + $total[$countTotal - 2]['total_penjualan'] + $total[$countTotal - 3]['total_penjualan']) / 3);
+        }
+    }
+
+    public function hitung_mape($prediksi, $periode)
+    {
+        if (!$prediksi) {
+        } else {
+            $total_error = 0;    
+            for ($i = 0; $i < count($prediksi); $i++) { 
+                $total_error += $prediksi[$i]['mape'];
+            }
+            $mape = $total_error / (count($prediksi) -$periode);
+            return $mape;
         }
     }
 }

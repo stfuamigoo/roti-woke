@@ -40,7 +40,7 @@ class Admin_Dashboard extends CI_Controller
         }
         $data['total'] = $total;
         $data['prediksi'] = $this->hitung_prediksi($total);
-
+        $data['uniq_month'] = $uniq_month;
 
         $this->load->view('templates/admin_headbar', $data);
         $this->load->view('templates/admin_sidebar');

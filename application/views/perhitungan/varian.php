@@ -22,11 +22,11 @@
 
   <div class="card-shadow mb-4">
     <div class="card">
-      <div class="card-header">Pilih Varian</div>
+      <div class="card-header">Pilih Varian & Periode</div>
       <div class="card-body">
         <form action="<?php echo site_url('perhitungan/varian'); ?>" method="GET">
           <div class="form-group row">
-            <div class="col-md-9">
+            <div class="col-md-4">
               <label for="exampleFormControlSelect1">Varian</label>
               <select class="form-control" id="nama_varian" name="nama_varian">
                 <option value="" selected hidden disabled>Pilih Varian</option>
@@ -34,6 +34,10 @@
                 <option value="kopi" <?php echo ($selected_varian == 'kopi') ? 'selected' : ''; ?>>Kopi</option>
                 <option value="sosis" <?php echo ($selected_varian == 'sosis') ? 'selected' : ''; ?>>Sosis</option>
               </select>
+            </div>
+            <div class="col-md-4">
+              <label for="exampleFormControlSelect1">Input Periode</label>
+              <input type="number" class="form-control" id="periode" name="periode">
             </div>
             <div class="col-md-3 d-flex align-items-end">
               <button type="submit" class="btn btn-primary">Tampil</button>
