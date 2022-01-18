@@ -30,9 +30,9 @@
               <label for="exampleFormControlSelect1">Varian</label>
               <select class="form-control" id="nama_varian" name="nama_varian">
                 <option value="" selected hidden disabled>Pilih Varian</option>
-                <option value="pizza mini" <?php echo ($selected_varian == 'pizza mini') ? 'selected' : ''; ?>>Pizza Mini</option>
-                <option value="kopi" <?php echo ($selected_varian == 'kopi') ? 'selected' : ''; ?>>Kopi</option>
-                <option value="sosis" <?php echo ($selected_varian == 'sosis') ? 'selected' : ''; ?>>Sosis</option>
+                <option value='1' <?php echo ($selected_varian == 'pizza mini') ? 'selected' : ''; ?>>Pizza Mini</option>
+                <option value='2' <?php echo ($selected_varian == 'kopi') ? 'selected' : ''; ?>>Kopi</option>
+                <option value='3' <?php echo ($selected_varian == 'sosis') ? 'selected' : ''; ?>>Sosis</option>
               </select>
             </div>
             <div class="col-md-4">
@@ -60,7 +60,8 @@
               <td>Bulan</td>
               <td>Data Aktual</td>
               <td>Prediksi</td>
-              <td>MAPE</td>
+              <td>Error</td>
+              <td>Absolute Error</td>
             </tr>
           </thead>
           <tbody>
@@ -70,6 +71,7 @@
                 <td><?php echo $pre['bulan']; ?></td>
                 <td><?php echo $pre['total_penjualan']; ?></td>
                 <td><?php echo $pre['prediksi']; ?></td>
+                <td><?php echo $pre['error']; ?></td>
                 <td><?php echo $pre['mape']; ?></td>
               </tr>
             <?php endforeach; ?>
@@ -92,10 +94,18 @@
   </div>
 
   <!-- Statement -->
-  <div class="card">
+  <div class="card mb-4">
     <div class="card-header">Prediksi</div>
     <div class="card-body">
       Prediksi bulan selanjutnya adalah: <?php echo $statement; ?>
+    </div>
+  </div>
+
+  <!-- Statement -->
+  <div class="card mb-4">
+    <div class="card-header">MAPE</div>
+    <div class="card-body">
+      MAPE : <?php echo $mape; ?> %
     </div>
   </div>
 </div>

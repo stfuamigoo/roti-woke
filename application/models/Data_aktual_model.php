@@ -52,4 +52,47 @@ class Data_aktual_model extends CI_Model
     {
         return $this->db->query("select sum(penjualan) as total_varian from penjualan where month(tanggal)='$month' and varian = '$varian'")->row_array();
     }
+
+    //produk
+    public function getNamaVarianById()
+    {
+        return $this->db->query("SELECT penjualan.id, penjualan.tanggal, penjualan.penjualan, produk.nama FROM penjualan INNER JOIN produk ON penjualan.varian=produk.id ORDER BY penjualan.tanggal, produk.nama")->result_array();
+    }
+
+    public function getAllVarian()
+    {
+        return $this->db->query("SELECT * FROM produk ")->result_array();
+    }
+
+    public function insertVarian($data = array())
+    {
+        return $this->db->insert('produk', $data);
+    }
+
+    public function deleteVarian($id)
+    {
+        $query = "DELETE FROM produk WHERE `id` = '$id'";
+        return $this->db->query($query);
+    }
+
+    public function editVarianData($new_data = array())
+    {
+        $nama = $new_data['nama'];
+        $harga = $new_data['harga'];
+        $keterangan = $new_data['keterangan'];
+        $id = $new_data['id'];
+
+        $query = "UPDATE produk SET `nama` = '$nama', `harga` = '$harga', `keterangan` = '$keterangan' WHERE `id` = '$id'";
+        return $this->db->query($query);
+    }
+
+    public function getVarianByID($id)
+    {
+        return $this->db->query("SELECT * FROM produk WHERE id = '$id'")->row_array();
+    }
+
+    public function getAllVarianID()
+    {
+        return $this->db->query("SELECT id FROM produk ")->result_array();
+    }
 }

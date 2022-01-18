@@ -24,6 +24,7 @@ class Data_Aktual extends CI_Controller
         // get all user information from the database
         $username = $this->session->userdata('username');
         $data['data_penjualan'] = $this->Penjualan->getAllPenjualan();
+        $data['data_produk'] = $this->Penjualan->getAllVarianID();
         $data['user_data'] = $this->User->getUserByUsername($username);
         $data['role'] = $this->session->userdata('role');
 
@@ -31,6 +32,9 @@ class Data_Aktual extends CI_Controller
         $uniq_month = $this->Penjualan->getUniqueMonth();
         $total = array();
         $total_varian = array();
+        $id_varian = $data['data_produk'];
+        echo '<pre>' . var_export($id_varian[0], true) . '</pre>';
+
         foreach ($uniq_month as $uniq) {
             $sum_month = $this->Penjualan->getSumByMonth($uniq['bulan']);
             $dateObj   = DateTime::createFromFormat('!m', $uniq['bulan']);
@@ -42,9 +46,9 @@ class Data_Aktual extends CI_Controller
             ];
             array_push($total, $row);
 
-            $varian_pizza_mini = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'pizza mini');
-            $varian_kopi = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'kopi');
-            $varian_sosis = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 'sosis');
+            $varian_pizza_mini = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 1);
+            $varian_kopi = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 2);
+            $varian_sosis = $this->Penjualan->getSumMonthByVarian($uniq['bulan'], 3);
             $row_varian = [
                 'tahun' => $uniq['tahun'],
                 'bulan' => $monthName,
@@ -56,6 +60,7 @@ class Data_Aktual extends CI_Controller
         }
         $data['total'] = $total;
         $data['total_varian'] = $total_varian;
+        $data['data_fix'] = $this->Penjualan->getNamaVarianById();
 
         $this->load->view('templates/admin_headbar', $data);
         $this->load->view('templates/admin_sidebar');
@@ -105,6 +110,13 @@ class Data_Aktual extends CI_Controller
                         $tanggal = $sheetData[$i][0];
                         $penjualan = $sheetData[$i][1];
                         $varian = $sheetData[$i][2];
+                        if ($varian == "pizza mini") {
+                            $varian = 1;
+                        } elseif ($varian == "kopi") {
+                            $varian = 2;
+                        } else {
+                            $varian = 3;
+                        }
                         $data_aktual[] = array(
                             'tanggal' => $tanggal,
                             'penjualan' => $penjualan,

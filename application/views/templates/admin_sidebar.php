@@ -44,6 +44,13 @@
 
     <!-- Nav Item - Users -->
     <li class="nav-item <?php echo ($this->uri->segment(2) == 'user_list' ? 'active' : ''); ?>">
+        <a class="nav-link" href="<?php echo site_url(); ?>Produk/index">
+            <i class="fas fa-database"></i>
+            <span>Data Varian</span></a>
+    </li>
+
+    <!-- Nav Item - Users -->
+    <li class="nav-item <?php echo ($this->uri->segment(2) == 'user_list' ? 'active' : ''); ?>">
         <a class="nav-link" href="<?php echo site_url(); ?>Data_Aktual/index">
             <i class="fas fa-database"></i>
             <span>Data Penjualan</span></a>

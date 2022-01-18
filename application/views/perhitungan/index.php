@@ -52,6 +52,7 @@
                             <td>Data Aktual</td>
                             <td>Prediksi</td>
                             <td>Error</td>
+                            <td>Absolute Error</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,6 +62,7 @@
                                 <td><?php echo $pre['bulan']; ?></td>
                                 <td><?php echo $pre['total_penjualan']; ?></td>
                                 <td><?php echo $pre['prediksi']; ?></td>
+                                <td><?php echo $pre['error']; ?></td>
                                 <td><?php echo $pre['mape']; ?></td>
                             </tr>
                         <?php endforeach; ?>
@@ -74,7 +76,7 @@
     <div class="card">
         <div class="card-header">MAPE</div>
         <div class="card-body">
-        MAPE: <?php echo $mape; ?>
+            MAPE: <?php echo $mape; ?>%
         </div>
     </div>
 

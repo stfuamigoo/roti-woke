@@ -39,7 +39,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($data_penjualan as $penjualan) : ?>
+                        <?php foreach ($data_fix as $penjualan) : ?>
                             <tr>
                                 <?php
                                 $seperate_date = $penjualan['tanggal'];
@@ -53,7 +53,7 @@
                                 <td><?php echo $bulan ?></td>
                                 <td><?php echo $tanggal ?></td>
                                 <td><?php echo $penjualan['penjualan'] ?></td>
-                                <td><?php echo $penjualan['varian'] ?></td>
+                                <td><?php echo $penjualan['nama'] ?></td>
                                 <td>
                                     <a href="<?php echo site_url(); ?>data_aktual/hapus/<?php echo $penjualan['id']; ?>"><span class="badge badge-danger">Hapus</span></a>
                                     <a href="<?php echo site_url(); ?>data_aktual/edit/<?php echo $penjualan['id']; ?>"><span class="badge badge-secondary">Edit</span></a>
