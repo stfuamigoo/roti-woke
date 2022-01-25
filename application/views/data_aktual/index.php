@@ -4,7 +4,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center mb-4">
         <h1 class="h3 mb-0 text-gray-800 mr-4">List Data Penjualan</h1>
-        <a class="btn btn-primary" href="<?php echo site_url(); ?>Data_Aktual/import_file">Tambah</a>
         <a class="btn btn-success ml-3" href="<?php echo site_url(); ?>Data_Aktual/import_file">Import</a>
         <a href="<?php echo site_url(); ?>Data_Aktual/reset" class="btn btn-danger ml-3">Reset</a>
     </div>
@@ -35,7 +34,6 @@
                             <th>Tanggal</th>
                             <th>Penjualan</th>
                             <th>Varian</th>
-                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,10 +52,6 @@
                                 <td><?php echo $tanggal ?></td>
                                 <td><?php echo $penjualan['penjualan'] ?></td>
                                 <td><?php echo $penjualan['nama'] ?></td>
-                                <td>
-                                    <a href="<?php echo site_url(); ?>data_aktual/hapus/<?php echo $penjualan['id']; ?>"><span class="badge badge-danger">Hapus</span></a>
-                                    <a href="<?php echo site_url(); ?>data_aktual/edit/<?php echo $penjualan['id']; ?>"><span class="badge badge-secondary">Edit</span></a>
-                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

@@ -3,22 +3,8 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center mb-4">
-        <h1 class="h3 mb-0 text-gray-800 mr-4">List Data Perhitungan Penjualan</h1>
+        <h1 class="h3 mb-0 text-gray-800 mr-4">Perhitungan Penjualan</h1>
     </div>
-
-    <?php if ($this->session->flashdata('danger_alert')) : ?>
-        <div class="alert alert-dismissible alert-danger" role="alert">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <?php echo $this->session->flashdata('danger_alert'); ?>
-        </div>
-    <?php endif; ?>
-
-    <?php if ($this->session->flashdata('success_alert')) : ?>
-        <div class="alert alert-dismissible alert-success" role="alert">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <?php echo $this->session->flashdata('success_alert'); ?>
-        </div>
-    <?php endif; ?>
 
     <div class="card-shadow mb-4">
         <div class="card">
@@ -69,6 +55,14 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+    </div>
+
+    <!-- Statement -->
+    <div class="card mb-4">
+        <div class="card-header">Prediksi</div>
+        <div class="card-body">
+            Prediksi bulan selanjutnya adalah: <?php echo $statement; ?>
         </div>
     </div>
 

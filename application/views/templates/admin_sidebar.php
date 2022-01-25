@@ -19,20 +19,23 @@
             <span>Dashboard</span></a>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        User
-    </div>
 
-    <!-- Nav Item - Users -->
-    <li class="nav-item <?php echo ($this->uri->segment(2) == 'user_list' ? 'active' : ''); ?>">
-        <a class="nav-link" href="<?php echo site_url(); ?>Admin_manage_user/index">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Pengguna Web</span></a>
-    </li>
+    <?php if ($role == "Admin") : ?>
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            User
+        </div>
+        <!-- Nav Item - Users -->
+        <li class="nav-item <?php echo ($this->uri->segment(2) == 'user_list' ? 'active' : ''); ?>">
+            <a class="nav-link" href="<?php echo site_url(); ?>Admin_manage_user/index">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Pengguna Web</span></a>
+        </li>
+    <?php endif; ?>
 
     <!-- Divider -->
     <hr class="sidebar-divider">

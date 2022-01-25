@@ -33,7 +33,6 @@ class Data_Aktual extends CI_Controller
         $total = array();
         $total_varian = array();
         $id_varian = $data['data_produk'];
-        echo '<pre>' . var_export($id_varian[0], true) . '</pre>';
 
         foreach ($uniq_month as $uniq) {
             $sum_month = $this->Penjualan->getSumByMonth($uniq['bulan']);

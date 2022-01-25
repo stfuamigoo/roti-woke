@@ -59,6 +59,7 @@ class Perhitungan extends CI_Controller
             $data['total'] = $total;
             $data['total_varian'] = $total_varian;
             $data['prediksi'] = $this->hitung_prediksi($total, $periode);
+            $data['statement'] = $this->hitung_statement($total);
             $data['mape'] = $this->hitung_mape($data['prediksi'], $periode);
 
             $this->load->view('templates/admin_headbar', $data);
